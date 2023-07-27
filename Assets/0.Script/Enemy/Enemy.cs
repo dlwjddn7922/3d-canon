@@ -7,6 +7,6 @@ public  abstract class Enemy : MonoBehaviour
     private Animator animator;
     void Update()
     {
-        //transform.Translate(Vector3.left * Time.deltaTime * 2f);
+        transform.Translate(Vector3.left * Time.deltaTime * 0.5f);
     }
 }
