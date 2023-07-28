@@ -6,10 +6,12 @@ public class Cannon : MonoBehaviour
 {
 
     [HideInInspector] public bool isDrag = false;
-    RaycastHit hit;
     [HideInInspector]  public Vector3 startPos = Vector3.zero;
-    [SerializeField] Transform target;
+    [SerializeField] private Transform target;
     [SerializeField] private Animator animator;
+
+    RaycastHit hit;
+
 
     private void Update()
     {

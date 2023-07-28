@@ -4,23 +4,17 @@ using UnityEngine;
 
 public class CannonBlock : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    Cannon cannon;
+    [HideInInspector] public Cannon cannon = null;
     Vector3 pos;
     public void OnTriggerEnter(Collider other)
     {
         if(other.GetComponent<Cannon>())
         {
+            if(cannon != null)
+            {
+                return;
+            }
             cannon = other.GetComponent<Cannon>();
             pos = cannon.startPos;
             Vector3 vec = transform.position;
