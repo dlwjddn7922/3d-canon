@@ -6,13 +6,16 @@ public class CannonBlock : MonoBehaviour
 {
 
     [HideInInspector] public Cannon cannon = null;
+    /*
     Vector3 pos;
     public void OnTriggerEnter(Collider other)
     {
         if(other.GetComponent<Cannon>())
         {
+            //기존에 있던 캐논
             if(cannon != null)
             {
+                //cannon.transform.position = other.GetComponent<Cannon>().startPos;
                 return;
             }
             cannon = other.GetComponent<Cannon>();
@@ -24,10 +27,13 @@ public class CannonBlock : MonoBehaviour
     }
     public void OnTriggerExit(Collider other)
     {
-        if(cannon != null)
+        if(cannon == other.gameObject.GetComponent<Cannon>())
         {
-            cannon.startPos = pos;
-            cannon = null;
-        }
-    }
+            if (cannon != null)
+            {
+                //cannon.startPos = pos;
+                cannon = null;
+            }
+        }     
+    }*/
 }

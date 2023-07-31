@@ -9,7 +9,7 @@ public class Cannon : MonoBehaviour
     [HideInInspector]  public Vector3 startPos = Vector3.zero;
     [SerializeField] private Transform target;
     [SerializeField] private Animator animator;
-
+    [HideInInspector] public CannonBlock block;
     RaycastHit hit;
 
 
@@ -41,8 +41,51 @@ public class Cannon : MonoBehaviour
     }
     public void OnMouseUp()
     {
-        transform.position = startPos;
+        if (block != null)
+        {
+            if (block.cannon == null || block.cannon == this)
+            {
+                block.cannon = this;
+                transform.position = block.transform.position;
+                block = null;
+            }
+            else
+            {
+                Vector3 pos = block.cannon.transform.position;
+                block.cannon.transform.position = startPos;
+                transform.position = pos;
+            }
+        }
+        else
+        {
+            transform.position = startPos;
+        }
         startPos = Vector3.zero;
     }
+    void PositionChange()
+    {
+        
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<CannonBlock>())
+        {
+            block = other.GetComponent<CannonBlock>();
+            if(block.cannon != null)
+                block.cannon = this;
+            
+        }
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        if(block != null && block.cannon == null)
+        {
+            block = null;
+            if (other.GetComponent<CannonBlock>())
+            {
+                other.GetComponent<CannonBlock>().cannon = null;
+            }
+        }
 
+    }
 }

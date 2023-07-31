@@ -10,6 +10,8 @@ public class CannonSpawn : MonoBehaviour
     const int Y = 2;
     const int X = 6;
     bool[,] blocks = new bool[Y, X];
+    //Å×½ºÆ®
+    int spawnCount = 1;
 
     public void OnCreatCannon()
     {
@@ -21,7 +23,19 @@ public class CannonSpawn : MonoBehaviour
                 {
                     int rand = Random.Range(0, cannons.Length);
                     Vector3 createPos = cannonBlocks[i].transform.position;
-                    Instantiate(cannons[rand], createPos, Quaternion.identity);
+
+                    Cannon c = null;
+                    if ( spawnCount %2 ==0)
+                    {
+                        c = Instantiate(cannons[1], createPos, Quaternion.identity);
+                    }else
+                    {
+                        c = Instantiate(cannons[0], createPos, Quaternion.identity);
+                    }
+                    cannonBlocks[i].cannon = c;
+                    
+                    //Instantiate(cannons[rand], createPos, Quaternion.identity);
+                    spawnCount++;
                     break;
                 }
             }      
