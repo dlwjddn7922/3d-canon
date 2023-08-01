@@ -23,7 +23,7 @@ public class CannonSpawn : MonoBehaviour
                 {
                     int rand = Random.Range(0, cannons.Length);
                     Vector3 createPos = cannonBlocks[i].transform.position;
-
+/*
                     Cannon c = null;
                     if ( spawnCount %2 ==0)
                     {
@@ -31,9 +31,9 @@ public class CannonSpawn : MonoBehaviour
                     }else
                     {
                         c = Instantiate(cannons[0], createPos, Quaternion.identity);
-                    }
-                    cannonBlocks[i].cannon = c;
-                    
+                    }*/
+                    cannonBlocks[i].cannon = Instantiate(cannons[rand], createPos, Quaternion.identity);
+
                     //Instantiate(cannons[rand], createPos, Quaternion.identity);
                     spawnCount++;
                     break;

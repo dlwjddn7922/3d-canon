@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
-
-    [HideInInspector] public bool isDrag = false;
     [HideInInspector]  public Vector3 startPos = Vector3.zero;
     [SerializeField] private Transform target;
     [SerializeField] private Animator animator;
     [HideInInspector] public CannonBlock block;
+    CannonBlock startBlock;
+
     RaycastHit hit;
-
-
+    float attDistance = 2f;
+    float attDelay = 0.5f;
+    float attDelayTimer = 0f;
     private void Update()
     {
-        transform.LookAt(target);
-
+        Attack();
         if(Input.GetKeyDown(KeyCode.F1))
         {
             animator.SetTrigger("Attack");
@@ -24,11 +24,11 @@ public class Cannon : MonoBehaviour
     }
     public void OnMouseDrag()
     {
-        isDrag = true;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(startPos == Vector3.zero)
         {
             startPos = transform.position;
+            startBlock = block;
         }
         
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Ground")))
@@ -43,17 +43,22 @@ public class Cannon : MonoBehaviour
     {
         if (block != null)
         {
-            if (block.cannon == null || block.cannon == this)
+            if (block.cannon == null)
             {
                 block.cannon = this;
                 transform.position = block.transform.position;
-                block = null;
+                startBlock = null;
             }
             else
             {
                 Vector3 pos = block.cannon.transform.position;
                 block.cannon.transform.position = startPos;
                 transform.position = pos;
+
+                Cannon c = block.cannon;
+                block.cannon = this;
+                startBlock.cannon = c;
+
             }
         }
         else
@@ -70,22 +75,47 @@ public class Cannon : MonoBehaviour
     {
         if(other.GetComponent<CannonBlock>())
         {
-            block = other.GetComponent<CannonBlock>();
-            if(block.cannon != null)
-                block.cannon = this;
-            
+            block = other.GetComponent<CannonBlock>();            
         }
     }
+
     public void OnTriggerExit(Collider other)
     {
-        if(block != null && block.cannon == null)
+        block = null;
+    }
+    Enemy FindEnemy()
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+
+        float minDis = attDistance;
+        Enemy e = null;
+        foreach (var enemy in enemies)
         {
-            block = null;
-            if (other.GetComponent<CannonBlock>())
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+
+            if (minDis <= distance)
             {
-                other.GetComponent<CannonBlock>().cannon = null;
+                minDis = distance;
+                e = enemy;
             }
         }
+        return e;
+    }
+    void Attack()
+    {
+        Enemy enemy = FindEnemy();
+        if(enemy == null)
+        {
+            return;
+        }
 
+        transform.LookAt(enemy.transform);
+
+        attDelayTimer += Time.deltaTime;
+        if(attDelayTimer > attDelay)
+        {
+            attDelayTimer = 0f;
+            animator.SetTrigger("Attack");
+        }
     }
 }
