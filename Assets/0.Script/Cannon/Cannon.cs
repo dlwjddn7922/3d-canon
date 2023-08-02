@@ -5,21 +5,24 @@ using UnityEngine;
 public class Cannon : MonoBehaviour
 {
     [HideInInspector]  public Vector3 startPos = Vector3.zero;
-    [SerializeField] private Transform target;
     [SerializeField] private Animator animator;
+    [SerializeField] private Ball ball;
+    [SerializeField] private Transform parent;
     [HideInInspector] public CannonBlock block;
     CannonBlock startBlock;
 
     RaycastHit hit;
-    float attDistance = 2f;
-    float attDelay = 0.5f;
-    float attDelayTimer = 0f;
+    
+    protected float AttDistance { get; set; }
+    protected float AttDelay { get; set; }
+    float attDelayTimer = 0;
     private void Update()
     {
-        Attack();
-        if(Input.GetKeyDown(KeyCode.F1))
+
+        if (Input.GetKeyDown(KeyCode.F1))
         {
-            animator.SetTrigger("Attack");
+            //animator.SetTrigger("Attack");
+            Attack();
         }
     }
     public void OnMouseDrag()
@@ -47,7 +50,7 @@ public class Cannon : MonoBehaviour
             {
                 block.cannon = this;
                 transform.position = block.transform.position;
-                startBlock = null;
+                startBlock.cannon = null;
             }
             else
             {
@@ -75,19 +78,22 @@ public class Cannon : MonoBehaviour
     {
         if(other.GetComponent<CannonBlock>())
         {
-            block = other.GetComponent<CannonBlock>();            
+            block = other.GetComponent<CannonBlock>();
+            if(block.cannon == null)
+                block.Input();
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
+        block.Output();
         block = null;
     }
     Enemy FindEnemy()
     {
         Enemy[] enemies = FindObjectsOfType<Enemy>();
 
-        float minDis = attDistance;
+        float minDis = AttDistance;
         Enemy e = null;
         foreach (var enemy in enemies)
         {
@@ -109,13 +115,18 @@ public class Cannon : MonoBehaviour
             return;
         }
 
-        transform.LookAt(enemy.transform);
+        Vector3 vec = new Vector3(0, enemy.transform.position.y, enemy.transform.position.z);
+        transform.LookAt(vec);
 
         attDelayTimer += Time.deltaTime;
-        if(attDelayTimer > attDelay)
+        if(attDelayTimer > AttDelay)
         {
             attDelayTimer = 0f;
             animator.SetTrigger("Attack");
+
+            Ball b = Instantiate(ball, parent);
+            b.SetTarget(enemy.transform);
+            b.transform.SetParent(null);
         }
     }
 }
