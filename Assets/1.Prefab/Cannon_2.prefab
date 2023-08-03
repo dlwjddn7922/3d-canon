@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 629266637440077536}
   - component: {fileID: 629266637440077537}
   - component: {fileID: -8776071106668810452}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cannon_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
   animator: {fileID: 629266637440077536}
-  target: {fileID: 6759863734040349093, guid: c137bb008caa3774baa43a118cc52026, type: 3}
   ball: {fileID: 5812206705441472383, guid: ac2e22a7a0e31dc47941e9b634c53a9a, type: 3}
   parent: {fileID: 6316738848686116420}
   block: {fileID: 0}
@@ -114,7 +113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6316738848686116420}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FirePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6316738848686116421}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 27.100002, z: 23.129995}
+  m_LocalPosition: {x: 0, y: 29.6, z: 29.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -146,6 +145,70 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
       propertyPath: m_Name
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100028, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100030, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
       propertyPath: m_RootOrder

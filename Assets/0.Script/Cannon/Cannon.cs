@@ -19,11 +19,8 @@ public class Cannon : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            //animator.SetTrigger("Attack");
-            Attack();
-        }
+       Attack();
+
     }
     public void OnMouseDrag()
     {
@@ -99,7 +96,7 @@ public class Cannon : MonoBehaviour
         {
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
 
-            if (minDis <= distance)
+            if (minDis >= distance)
             {
                 minDis = distance;
                 e = enemy;
