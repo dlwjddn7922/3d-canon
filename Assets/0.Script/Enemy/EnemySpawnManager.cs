@@ -19,7 +19,7 @@ public class EnemySpawnManager : MonoBehaviour
     void Update()
     {
         spawnTimer += Time.deltaTime;
-        if(spawnTimer > 0.2f && spawnCount < 20)
+        if(spawnTimer > 1f && spawnCount < 10)
         {
             spawnTimer = 0;
             int rand = Random.Range(0, enemies.Length);

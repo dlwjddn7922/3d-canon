@@ -1,0 +1,18 @@
+{
+  "cannon": [
+    {
+      "name": "normal",
+      "attdistance": 10.0,
+      "attdelay": 2.0,
+      "power": 10,
+      "price": 10
+    },
+    {
+      "name": "mid",
+      "attdistance": 2.0,
+      "attdelay": 2.0,
+      "power": 20,
+      "price": 20
+    }
+  ]
+}
