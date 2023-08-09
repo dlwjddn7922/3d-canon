@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class EnemySpawnManager : MonoBehaviour
 {
+    [SerializeField] private Transform finish;
     [SerializeField] private Enemy[] enemies;
     [SerializeField] private BoxCollider boxColl;
 
-    float spawnTimer = 0;
+    float spawnTimer = float.MaxValue;
     float spawnCount = 0;
     // Start is called before the first frame update
     void Start()
@@ -18,12 +19,14 @@ public class EnemySpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         spawnTimer += Time.deltaTime;
-        if(spawnTimer > 1f && spawnCount < 10)
+        if(spawnTimer > 2.5f && spawnCount < 20)
         {
             spawnTimer = 0;
             int rand = Random.Range(0, enemies.Length);
-            Instantiate(enemies[rand], RandomPosition(),Quaternion.identity);
+            Enemy e = Instantiate(enemies[rand], RandomPosition(),Quaternion.identity);
+            e.SetTarget(finish);
             spawnCount++;
         }
     }

@@ -15,6 +15,7 @@ public class Cannon : MonoBehaviour
     
     protected float AttDistance { get; set; }
     protected float AttDelay { get; set; }
+    protected JsonData.CannonMainData data;
     float attDelayTimer = 0;
     private void Update()
     {
@@ -124,6 +125,7 @@ public class Cannon : MonoBehaviour
             Ball b = Instantiate(ball, parent);
             b.SetTarget(enemy.transform);
             b.transform.SetParent(null);
+            b.Power = data.power;
         }
     }
 }

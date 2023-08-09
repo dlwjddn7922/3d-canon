@@ -6,8 +6,10 @@ public class Ball : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
     Transform target;
+    public int Power { get; set; }
     float shootAngle1 = 50f; // 발사 각도 (0~90도)
     float gravity1 = -9.81f; // 중력 가속도
+    
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
     {
@@ -15,7 +17,7 @@ public class Ball : MonoBehaviour
         {
             if (target != null && target.GetComponent<Enemy>())
             {
-                target.GetComponent<Enemy>().Hit(20);
+                target.GetComponent<Enemy>().Hit(Power);
             }
             Destroy(gameObject);
         }
