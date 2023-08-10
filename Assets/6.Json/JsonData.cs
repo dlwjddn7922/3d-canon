@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JsonData : MonoBehaviour
+public class JsonData : Singleton<JsonData>
 {
-    public static JsonData Instance;
+    [SerializeField] private TextAsset cannonJsonTxt;
+    [SerializeField] private TextAsset enemyJsonTxt;
+
+
     [System.Serializable]
     public class CannonMainData
     {
@@ -21,12 +24,26 @@ public class JsonData : MonoBehaviour
     }
 
     public CannonData cannonData = new CannonData();
-    [SerializeField] private TextAsset cannonJsonTxt;
+
+    [System.Serializable]
+    public class EnemyMainData
+    {
+        public string name;
+        public int gold;
+        public int hp;
+        public float speed;
+    }
+    [System.Serializable]
+    public class EnemyData
+    {
+        public List<EnemyMainData> enemy = new List<EnemyMainData>();
+    }
+
+    public EnemyData enemyData = new EnemyData();
     // Start is called before the first frame update
     private void Awake()
     {
-        Instance = this;
-
         cannonData = JsonUtility.FromJson<CannonData>(cannonJsonTxt.ToString());
+        enemyData = JsonUtility.FromJson<EnemyData>(enemyJsonTxt.ToString());
     }
 }

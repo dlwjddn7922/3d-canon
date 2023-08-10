@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawnManager : MonoBehaviour
+public class EnemySpawnManager : Singleton<EnemySpawnManager>
 {
     [SerializeField] private Transform finish;
     [SerializeField] private Enemy[] enemies;
     [SerializeField] private BoxCollider boxColl;
 
+    public int SpawnCount { get; set; }
+    public int CatchCount { get; set; }
     float spawnTimer = float.MaxValue;
     float spawnCount = 0;
+
+    int nextDelayTime = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,13 +25,17 @@ public class EnemySpawnManager : MonoBehaviour
     {
 
         spawnTimer += Time.deltaTime;
-        if(spawnTimer > 2.5f && spawnCount < 20)
+        if(spawnTimer > 2.5f && SpawnCount < 20)
         {
+            if(CatchCount == 0)
+            {
+                CatchCount = 20;
+            }
             spawnTimer = 0;
             int rand = Random.Range(0, enemies.Length);
             Enemy e = Instantiate(enemies[rand], RandomPosition(),Quaternion.identity);
             e.SetTarget(finish);
-            spawnCount++;
+            SpawnCount++;
         }
     }
     Vector3 RandomPosition()
@@ -41,5 +49,11 @@ public class EnemySpawnManager : MonoBehaviour
         rangeY = Random.Range((rangeY / 2) * -1, rangeY / 2);
 
         return posVec + new Vector3(rangeX, 0f,rangeY);
+    }
+    public void ReSpawn()
+    {
+        SpawnCount = 0;
+        CatchCount = 0;
+        UI.Instance.Stage++;
     }
 }

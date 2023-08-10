@@ -18,6 +18,7 @@ public class Ball : MonoBehaviour
             if (target != null && target.GetComponent<Enemy>())
             {
                 target.GetComponent<Enemy>().Hit(Power);
+
             }
             Destroy(gameObject);
         }
