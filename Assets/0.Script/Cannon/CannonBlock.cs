@@ -13,6 +13,6 @@ public class CannonBlock : MonoBehaviour
     }
     public void Output()
     {
-        GetComponent<MeshRenderer>().material = materials[1];
+        //GetComponent<MeshRenderer>().material = materials[1];
     }
 }

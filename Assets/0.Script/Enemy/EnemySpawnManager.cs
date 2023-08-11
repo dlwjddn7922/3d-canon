@@ -25,14 +25,16 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
     {
 
         spawnTimer += Time.deltaTime;
-        if(spawnTimer > 2.5f && SpawnCount < 20)
+        if(spawnTimer > 2.5f && SpawnCount < JsonData.Instance.stageData.stage[UI.Instance.Stage -1].count)
         {
-            if(CatchCount == 0)
+            int stage = UI.Instance.Stage;
+            JsonData.StageMainData data = JsonData.Instance.stageData.stage[stage - 1];
+            if (CatchCount == 0)
             {
-                CatchCount = 20;
+                CatchCount = data.count;
             }
             spawnTimer = 0;
-            int rand = Random.Range(0, enemies.Length);
+            int rand = Random.Range(data.min, data.max + 1);
             Enemy e = Instantiate(enemies[rand], RandomPosition(),Quaternion.identity);
             e.SetTarget(finish);
             SpawnCount++;

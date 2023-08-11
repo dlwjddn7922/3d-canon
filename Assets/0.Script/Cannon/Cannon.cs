@@ -17,6 +17,13 @@ public class Cannon : MonoBehaviour
     protected float AttDelay { get; set; }
     protected JsonData.CannonMainData data;
     float attDelayTimer = 0;
+    public virtual void Init(int index)
+    {
+        data = JsonData.Instance.cannonData.cannon[index];
+        attDelayTimer = float.MaxValue;
+        AttDistance = data.attdistance;
+        AttDelay = data.attdelay;
+    }
     private void Update()
     {
 
@@ -68,10 +75,7 @@ public class Cannon : MonoBehaviour
         }
         startPos = Vector3.zero;
     }
-    void PositionChange()
-    {
-        
-    }
+
     public void OnTriggerEnter(Collider other)
     {
         if(other.GetComponent<CannonBlock>())

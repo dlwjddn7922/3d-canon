@@ -3,16 +3,16 @@
     {
       "name": "normal",
       "attdistance": 8.0,
-      "attdelay": 1.0,
-      "power": 10,
+      "attdelay": 1.5,
+      "power": 20,
       "price": 10
     },
     {
-      "name": "mid",
-      "attdistance": 2.0,
-      "attdelay": 2.0,
-      "power": 20,
-      "price": 20
+      "name": "speed",
+      "attdistance": 5.0,
+      "attdelay": 0.7,
+      "power": 10,
+      "price": 10
     }
   ]
 }

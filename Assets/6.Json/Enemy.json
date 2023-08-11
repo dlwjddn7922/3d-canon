@@ -5,6 +5,36 @@
       "gold": 2,
       "hp": 50,
       "speed": 0.5
+    },
+    {
+      "name": "B",
+      "gold": 4,
+      "hp": 80,
+      "speed": 0.5
+    },
+    {
+      "name": "C",
+      "gold": 6,
+      "hp": 120,
+      "speed": 0.7
+    },
+    {
+      "name": "D",
+      "gold": 8,
+      "hp": 150,
+      "speed": 1.0
+    },
+    {
+      "name": "E",
+      "gold": 10,
+      "hp": 200,
+      "speed": 1.2
+    },
+    {
+      "name": "F",
+      "gold": 15,
+      "hp": 300,
+      "speed": 1.2
     }
   ]
 }

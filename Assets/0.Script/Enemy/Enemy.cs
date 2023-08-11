@@ -6,12 +6,19 @@ using UnityEngine.AI;
 public  abstract class Enemy : MonoBehaviour
 {
     [SerializeField] private Transform target;
-    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] protected NavMeshAgent agent;
     protected JsonData.EnemyMainData data = new JsonData.EnemyMainData();
     private Animator animator;
     protected float Speed { get; set; }
     protected float HP { get; set; }
     protected int Gold { get; set; }
+
+    public virtual void Init()
+    {
+        agent.speed = data.speed;
+        HP = data.hp;
+        Gold = data.gold;
+    }
     private void Update()
     {
         if(target == null)
@@ -37,18 +44,23 @@ public  abstract class Enemy : MonoBehaviour
         if(HP <= 0)
         {
             UI.Instance.Gold += Gold;
-            EnemySpawnManager.Instance.CatchCount--;
 
-            if (EnemySpawnManager.Instance.CatchCount == 0)
-            {
-                EnemySpawnManager.Instance.Invoke("ReSpawn", 5f);              
-                
-            }
+            CatchCheck();
             Destroy(gameObject);
         }
     }
     public void SetTarget(Transform target)
     {
         this.target = target;
+    }
+    public void CatchCheck()
+    {
+        EnemySpawnManager.Instance.CatchCount--;
+
+        if (EnemySpawnManager.Instance.CatchCount == 0)
+        {
+            EnemySpawnManager.Instance.Invoke("ReSpawn", 5f);
+
+        }
     }
 }

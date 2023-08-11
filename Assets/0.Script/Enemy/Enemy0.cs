@@ -7,9 +7,7 @@ public class Enemy0 : Enemy
     void Start()
     {
         data = JsonData.Instance.enemyData.enemy[0];
-        Speed = data.speed;
-        HP = data.hp;
-        Gold = data.gold;
+        Init();
     }
 
 }
