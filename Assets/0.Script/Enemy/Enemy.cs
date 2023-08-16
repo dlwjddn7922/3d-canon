@@ -59,7 +59,8 @@ public  abstract class Enemy : MonoBehaviour
 
         if (EnemySpawnManager.Instance.CatchCount == 0)
         {
-            EnemySpawnManager.Instance.Invoke("ReSpawn", 5f);
+            //UI.Instance.Timer();
+            EnemySpawnManager.Instance.Invoke("ReSpawn",0f);
 
         }
     }

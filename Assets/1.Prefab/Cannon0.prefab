@@ -87,7 +87,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 19.74, y: 60, z: 27}
-  m_Center: {x: 0, y: 0, z: 4.5}
+  m_Center: {x: 0, y: 18.3, z: 4.5}
 --- !u!54 &-8776071106668810452
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -262,7 +262,19 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 4.1478996
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6400000, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+    - {fileID: 6400022, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+    - {fileID: 6400018, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+    - {fileID: 6400010, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+    - {fileID: 6400004, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+    - {fileID: 6400020, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+    - {fileID: 6400016, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+    - {fileID: 6400008, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+    - {fileID: 6400002, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+    - {fileID: 6400014, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+    - {fileID: 6400012, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
+    - {fileID: 6400006, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3e2224ed8ee0546b6b907176c4baf88a, type: 3}
 --- !u!4 &629266637199133792 stripped
 Transform:

@@ -12,12 +12,12 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
     public int CatchCount { get; set; }
     float spawnTimer = float.MaxValue;
     float spawnCount = 0;
-
+    float spawnTime = 3f;
     int nextDelayTime = 5;
     // Start is called before the first frame update
     void Start()
     {
-        
+        UI.Instance.isStart = true;
     }
 
     // Update is called once per frame
@@ -25,19 +25,24 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
     {
 
         spawnTimer += Time.deltaTime;
-        if(spawnTimer > 2.5f && SpawnCount < JsonData.Instance.stageData.stage[UI.Instance.Stage -1].count)
+        spawnTime -= Time.deltaTime;
+        UI.Instance.Timer();
+        if (spawnTime <= 0)
         {
-            int stage = UI.Instance.Stage;
-            JsonData.StageMainData data = JsonData.Instance.stageData.stage[stage - 1];
-            if (CatchCount == 0)
+            if (spawnTimer > 2.5f && SpawnCount < JsonData.Instance.stageData.stage[UI.Instance.Stage - 1].count)
             {
-                CatchCount = data.count;
+                int stage = UI.Instance.Stage;
+                JsonData.StageMainData data = JsonData.Instance.stageData.stage[stage - 1];
+                if (CatchCount == 0)
+                {
+                    CatchCount = data.count;
+                }
+                spawnTimer = 0;
+                int rand = Random.Range(data.min, data.max + 1);
+                Enemy e = Instantiate(enemies[rand], RandomPosition(), Quaternion.identity);
+                e.SetTarget(finish);
+                SpawnCount++;
             }
-            spawnTimer = 0;
-            int rand = Random.Range(data.min, data.max + 1);
-            Enemy e = Instantiate(enemies[rand], RandomPosition(),Quaternion.identity);
-            e.SetTarget(finish);
-            SpawnCount++;
         }
     }
     Vector3 RandomPosition()
@@ -54,8 +59,11 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
     }
     public void ReSpawn()
     {
+        UI.Instance.isStart = true;
+        UI.Instance.Timer();
         SpawnCount = 0;
         CatchCount = 0;
+        spawnTime = 3f;
         UI.Instance.Stage++;
     }
 }

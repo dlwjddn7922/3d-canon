@@ -88,7 +88,7 @@ public class Cannon : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        block.Output();
+        //block.Output();
         block = null;
     }
     Enemy FindEnemy()
