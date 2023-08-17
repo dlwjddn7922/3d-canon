@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UI : Singleton<UI>
 {
@@ -11,13 +12,16 @@ public class UI : Singleton<UI>
     [SerializeField] private TMP_Text buyTxt;
     [SerializeField] private TMP_Text stageTxt;
     [SerializeField] private TMP_Text timer;
+    [SerializeField] private TMP_Text speedTxt;
     [SerializeField] private Image timeImage;
     [SerializeField] private Image Image;
+    [SerializeField] private Image pauseImage;
 
 
     float setTime = 3f;
     float fillTime = 1f;
     public bool isStart = false;
+    public bool isPause = false;
 
 
     private int gold;
@@ -77,7 +81,7 @@ public class UI : Singleton<UI>
     {
         Stage = 1;
         Life = 20;
-        Gold = 50;
+        Gold = 200;
     }
 
     // Update is called once per frame
@@ -90,7 +94,7 @@ public class UI : Singleton<UI>
         if(isStart == true)
         {
             Image.gameObject.SetActive(true);
-            timeImage.gameObject.SetActive(true);
+            //timeImage.gameObject.SetActive(true);
             float value = setTime - (fillTime * Time.deltaTime);
             timeImage.fillAmount -= (setTime - value) / 3;
             setTime -= Time.deltaTime;
@@ -106,11 +110,48 @@ public class UI : Singleton<UI>
             {
                 Image.gameObject.SetActive(false);
                 isStart = false;
+                timeImage.fillAmount = 1;
             }
         }  
         else
         {
             setTime = 3f;
         }
+    }
+    public void OnPause()
+    {
+        isPause = true;
+        if(isPause == true)
+        {
+            Time.timeScale = 0;
+            pauseImage.gameObject.SetActive(true);
+            return;
+        }   
+    }
+    public void OnStart()
+    {
+        isPause = false;
+        if(isPause == false)
+        {
+            Time.timeScale = 1;
+            pauseImage.gameObject.SetActive(false);
+            return;
+        }
+    }
+    public void OnRestart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void OnUpSpeed()
+    {
+        Time.timeScale = 2;
+        speedTxt.text = "2X";
+        return;
+    }
+    public void OnDownSpeed()
+    {
+        Time.timeScale = 1;
+        speedTxt.text = "1X";
+        return;
     }
 }

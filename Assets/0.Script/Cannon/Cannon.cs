@@ -8,8 +8,11 @@ public class Cannon : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Ball ball;
     [SerializeField] private Transform parent;
+    //[SerializeField] private Cannon[] cannons1;
     [HideInInspector] public CannonBlock block;
+    //[SerializeField] private Transform cannonBlock;
     CannonBlock startBlock;
+    
 
     RaycastHit hit;
     
@@ -56,9 +59,16 @@ public class Cannon : MonoBehaviour
                 block.cannon = this;
                 transform.position = block.transform.position;
                 startBlock.cannon = null;
+
             }
             else
             {
+                if(block.cannon.data.name == this.data.name)
+                {                   
+                    Destroy(block.cannon.gameObject);
+                    Destroy(this.gameObject);
+                    CannonSpawn.Instance.OnUpgradeCannon();
+                }
                 Vector3 pos = block.cannon.transform.position;
                 block.cannon.transform.position = startPos;
                 transform.position = pos;
@@ -66,7 +76,6 @@ public class Cannon : MonoBehaviour
                 Cannon c = block.cannon;
                 block.cannon = this;
                 startBlock.cannon = c;
-
             }
         }
         else
