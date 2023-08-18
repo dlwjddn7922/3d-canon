@@ -464,6 +464,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   agent: {fileID: 6297839929755285774}
+  hitEffect: {fileID: 4067465623690099963, guid: 180e4648749fa5e408bd3d2919a3ccdd, type: 3}
+  hitTranse: {fileID: 6297839929755285776}
 --- !u!95 &6213612376662560840
 Animator:
   serializedVersion: 5

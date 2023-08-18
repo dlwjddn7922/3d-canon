@@ -7,6 +7,8 @@ public  abstract class Enemy : MonoBehaviour
 {
     [SerializeField] private Transform target;
     [SerializeField] protected NavMeshAgent agent;
+    [SerializeField] private GameObject hitEffect;
+    [SerializeField] private Transform hitTranse;
     protected JsonData.EnemyMainData data = new JsonData.EnemyMainData();
     private Animator animator;
     protected float Speed { get; set; }
@@ -44,7 +46,8 @@ public  abstract class Enemy : MonoBehaviour
         if(HP <= 0)
         {
             UI.Instance.Gold += Gold;
-
+            GameObject go = Instantiate(hitEffect);
+            go.transform.position = transform.position;
             CatchCheck();
             Destroy(gameObject);
         }

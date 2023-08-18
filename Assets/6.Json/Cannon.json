@@ -13,6 +13,20 @@
       "attdelay": 0.7,
       "power": 10,
       "price": 10
+    },
+    {
+      "name": "normal2",
+      "attdistance": 8.0,
+      "attdelay": 1.2,
+      "power": 30,
+      "price": 10
+    },
+    {
+      "name": "speed2",
+      "attdistance": 6.0,
+      "attdelay": 0.3,
+      "power": 12,
+      "price": 10
     }
   ]
 }

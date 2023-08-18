@@ -16,6 +16,7 @@ public class UI : Singleton<UI>
     [SerializeField] private Image timeImage;
     [SerializeField] private Image Image;
     [SerializeField] private Image pauseImage;
+    [SerializeField] private Image reloadImage;
 
 
     float setTime = 3f;
@@ -140,7 +141,19 @@ public class UI : Singleton<UI>
     }
     public void OnRestart()
     {
+        Time.timeScale = 0;
+        reloadImage.gameObject.SetActive(true);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void OnYes()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1;
+    }
+    public void OnNo()
+    {
+        reloadImage.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
     public void OnUpSpeed()
     {
